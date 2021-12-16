@@ -45,6 +45,28 @@ def receive_tcp():
 			break
 
 
+import subprocess
+
+class Ping(object):
+	def __init__(self,hosts):
+		for host in hosts:
+			#pingコマンド
+			ping = subprocess.Popen(['ping','-c','1',host],
+			stdout=subprocess.PIPE,
+			stderr=subprocess.PIPE)
+
+			#ping試験
+			out,error=ping.communicate()
+
+			#接続できなかったら
+			if error:
+				print('[NG]: ' +  host + ', Msg->\'' + error.rstrip() + '\'')
+
+			#接続できたら
+			else:
+				print('[OK]:'+ host)
+
+
 
 #get_local_ip()
 #get_global_ip()
@@ -52,4 +74,7 @@ def receive_tcp():
 #get_service_name(port=80,protocol_name='tcp')
 get_service_name(port=25, protocol_name='tcp')
 get_remote_ip(remote_host='www.google.com')
-receive_tcp()
+
+#ping試験用ホスト
+hosts = ['www.google.com','www.yahoo.jp']
+Ping(hosts)
