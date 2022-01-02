@@ -12,3 +12,21 @@ RustとPythonを用いてsocat通信等を試していく．
 
 ## tcp_scan.py
 3wayhandshakeで接続し，開いているポートを特定します．
+ログが残りやすい
+
+## syn_scan.py
+synパケットを投げて，syn+ackが帰って来ればポートが空いてる．
+rst+ackが帰ってきたらポートは閉じている
+ステルススキャン
+
+## client.py & server.py
+socket通信を用いたclient,serverモデル
+
+## syn_scan.py
+synパケットを投げる
+
+## main.py
+いろんな機能まとめたやつ
+
+## 3way_handshake.py
+3wayハンドシェイクを実現するクラス
