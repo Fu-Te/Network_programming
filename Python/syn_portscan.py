@@ -1,10 +1,17 @@
 from scapy.all import sr1, IP, TCP
+import time
 
 ip = str(input("接続先IPを入力:"))
+port = int(input('最初のポート番号を入力:'))
 port_end = int(input("終端ポートを指定:"))
 
+while port_end < port:
+	print('最初と最後の数値が変')
+	port = int(input('最初のポート番号を入力:'))
+	port_end = int(input("終端ポートを指定:"))
+
 open_port = []
-port = 0
+
 ip = IP(dst=ip)
 
 #syn+ackが帰って来ればポートが空いてる
@@ -24,9 +31,11 @@ while port <= port_end:
 		open_flag = bytes(ret['TCP'])[13],ret['TCP'].flags
 		
 		if open_flag == '(20, <Flag 20 (RA)>)':
+			time.sleep(5)
+			open_port.append(port)
 			continue
 		else:
-			open_port.append(port)
+			continue
 
 	except Exception as e:
 		print("Exception:{0}".format(e))

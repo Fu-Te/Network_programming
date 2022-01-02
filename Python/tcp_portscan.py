@@ -15,6 +15,7 @@ while port_end<port:
 
 open_port = []
 
+# 指定したポート番号内とIPアドレスで開いているポートを探す．
 while port <= port_end:
 	s = socket.socket()
 	errno = s.connect_ex((ip,port))
