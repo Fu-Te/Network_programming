@@ -50,7 +50,11 @@ Telnet:遠隔操作とか
 悪意のある攻撃者がローカルエリアネットワークを介して偽造されたARP要求を送信する攻撃の一種
 スイッチを過負荷にさせ，ネットワークパケットを盗聴しやすくする
 
-
+## watching_pcap
+pcapの中身を見る
+watch_pcapの方は，ポート番号を指定できる
+watch_pcap2は何も指定できない
+watch_pcap3は
 
 ## client.py & server.py
 socket通信を用いたclient,serverモデル
