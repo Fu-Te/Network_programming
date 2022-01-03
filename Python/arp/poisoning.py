@@ -46,7 +46,7 @@ def main():
 	target_ip = input('対象IP:')
 	host_ip = input('hostIP:')
 	gateway_ip = input('GatewayIP:')
-	interface = 'wlan0'
+	interface = 'en0'
 
 	packet_count = 200
 	conf.iface = interface
