@@ -1,5 +1,6 @@
 import socket
 import os
+from tqdm import tqdm
 
 #ポートをスキャンするが，Synスキャンと比べるとログが残りやすい
 #終わりのポート番号を探し，あいているところを探す．
@@ -16,7 +17,8 @@ while port_end<port:
 open_port = []
 
 # 指定したポート番号内とIPアドレスで開いているポートを探す．
-while port <= port_end:
+
+for port in tqdm(range(port,port_end+1)):
 	s = socket.socket()
 	errno = s.connect_ex((ip,port))
 	s.close()
@@ -29,6 +31,6 @@ while port <= port_end:
 		print("{} is close",port)
 		print(os.strerror(errno))
 
-	port = port + 1
+	
 
 print(open_port)
