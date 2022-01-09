@@ -85,9 +85,9 @@ arp_spoofingやarp_poisoningは，偽の情報をARPテーブルに登録させ�
 悪意のある攻撃者がローカルエリアネットワークを介して偽造されたARP要求を送信する攻撃の一種
 
 
-### arp_poisoning
+### arp_poisoning.py
 ターゲットとゲートウェイのARPテーブルにおけるMACアドレスを書き換える
-
+APRテーブルを書き換え，どのような通信をしているか盗聴できる．arper.pcapが生成されるので，それをみて解析可能．
 ## watching_pcap
 pcapの中身を見る
 watch_pcapの方は，ポート番号を指定できる
