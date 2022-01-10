@@ -69,6 +69,16 @@ FA 97 00 14 00 50 00 00 00 00 00 00 00 00 50 02  .....P........P.
  chksum=0xbb39 options=[] |<Raw load='GET /index.html HTTP/1.0 \n\n' |>>>>
 ```
 
+## パケットを送る
+```python
+# ICMPパケットを生成
+packet = IP(dst='')/ICMP(type=8)
+#　パケット送信
+send(packet)
+```
+send()で送信が可能，send()の場合，L2プロトコルは自動で調整される．
+
+
 ## Pcapファイルの読み取り
 ```python
 a = rdpcap('filepath')
