@@ -106,3 +106,9 @@ synパケットを投げる
 ## 3way_handshake.py
 3wayハンドシェイクを実現するクラス
 
+
+# これから勉強が必要なもの
+threading
+scapy
+sokcet
+subprocess
