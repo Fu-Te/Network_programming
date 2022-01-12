@@ -17,7 +17,7 @@ from scapy.all import *
 ex)```ls(Ether)```
 Ether: SrcMacAddr,DstMacAddr ```Ether(src="",dst="")```
 IP: SrcIPAddr,DstIPAddr ```IP(src="",dst="")```
-TCP: Src port,Dst port,Flag:SYN ```TCP(sport=1111,dport=1111,flags='S')
+TCP: Src port,Dst port,Flag:SYN ```TCP(sport=1111,dport=1111,flags='S')```
 
 
 ```
@@ -88,13 +88,41 @@ sr1(packet)
 
 ```
 
-
-
-## Pcapファイルの読み取り
 ```python
-a = rdpcap('filepath')
-a
+# 変数にも保存可能
+r_packet = sr1(packet)
 ```
+
+```python
+# 引数には初期値を指定
+send(packet,count=1,inter=1,iface=N) #L3でのパケット送信
+sendp(packet,count1,inter=1,iface=N) #L2でのパケット送信
+sendfast(packet,pps=N,mbps=N,iface=N) #tcpreplayを使って送信
+sr(packet,filter=N,iface=N) #L3でパケットを送信し，返信を全て受信する．
+srp(packet,filter=N,iface=N) #L2でパケットを送信し，返信を全て受信する．
+sr1(packet,filter=N,iface=N) #L3でパケットを送信し，返答を１つだけ受信
+srp1(packet,filter=N,iface=N) #L2でパケットを送信し，返答を一つだけ受信
+srflood(packet,filter=N,iface=N) #L3でパケットを大量に送信し，返信を全て受信
+srpflood(packet,filter=N,iface=N) #L2でパケットを大量に送信し，返信を全て受信
+```
+ちなみに，L2:OSIの第２層，MACアドレス使う
+L3:OSIの３層　IPアドレスを使う
+
+
+
+
+## Pcapファイルの読み取り，解析
+```python
+packets = rdpcap('filepath')
+packets
+packets[1] #n-1で指定　添字は0から
+```
+
+```python
+packets[0]['IP'] 
+```
+
+
 ## Pcapに書き込む
 ```python
 packet = Ether()/IP()/TCP()
