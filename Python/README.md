@@ -14,9 +14,20 @@ pip install socat scapy
 
 python3.9.7で動作確認
 
-# Command
+# Ethernet
+Macアドレスを使う．
+イーサネットでの役割・・・近隣までの荷物の配達
+
+## 用語
+MACアドレス・・・48ビットの整数．一意な識別子．上位24ビット→ベンダー，下位24ビット→ベンダーが割り当てる数字．
+
+# IP
+IPアドレスを使う．
 これらのコマンドではICMPプロトコルが内部的に使われている．ICMPは通信で生じたエラーの通知など様々な用途で用いられる．
 ICMPのエコーリクエスト(Echo request)とエコーリプライ(Echo reply)というメッセージをやりとりする．
+
+マニュアル（オプションについて知りたい時）は```$ man [command name]```
+
 ## ping
 TCP/IPのネットワーク疎通を確認する．
 ```$ ping 192.168.1.1```
@@ -28,7 +39,7 @@ TCP/IPのネットワーク疎通を確認する．
 ## tcpdump
 コンピュータの中を流れる通信を覗き見できる．（パケットキャプチャ，スニッフィング）
 
-[参考](https://qiita.com/tossh/items/4cd33693965ef231bd2a)
+[参考](https://xtech.nikkei.com/it/article/COLUMN/20140512/556024/)
 
 1.すべてのインターフェースをキャプチャする```$ sudo tcpdump ```
 2.ASCIIで見たい時```$ sudo tcpdump -A```
@@ -47,3 +58,77 @@ TCP/IPのネットワーク疎通を確認する．
 15.送信先もしくは送信元ポート番号を指定```tcpdump port [port]```
 それぞれの条件をandやorで繋ぐこともできる．
 ex```tcpdump port 80 and host 192.168.1.1```
+
+## traceroute
+[参考](https://atmarkit.itmedia.co.jp/ait/articles/0108/30/news003.html)
+パケットがどのような道順を通って目的地まで届くのかを確認できる．
+ネットワークのトラブルシューティングでよく使われる．
+```$ traceroute -n 192.168.1.1```
+
+IPプロトコルのTTL（TimeToLive）フィールドを使う．TTLを1つずつ増やし，目的地まで送る．そうすることで，パケットを破棄した経路状のルータから，ICMPの時間切れメッセージが返ってきて，そのメッセージには送信元IP（ルータのIPアドレス）がある．時間切れメッセージを送ってきたルータを並べることで経路を調べられる．
+
+## ip route show
+参考1:https://www.ibm.com/docs/ja/power7?topic=commands-netstat-command
+
+
+ルーティングテーブルの確認をする
+Linux ```$ ip route show ```
+mac ```$netstat -rn```
+ルーティングテーブルはノードがそれぞれ保持している．
+Defaultはデフォルトルート
+192.168.10.1/32・・・/32のような書き方はIPアドレスをまとめて宛先として指定している．
+
+実行結果↓
+```
+default via 192.168.10.1 dev wlan0 proto dhcp src 192.168.10.8 metric 304 
+169.254.0.0/16 dev usb0 scope link src 169.254.234.178 metric 203 
+192.168.10.0/24 dev wlan0 proto dhcp scope link src 192.168.10.8 metric 304 
+```
+
+
+
+
+## 用語
+ルータ・・・別のルータまたはホストから送られてきたパケットを次のルータ，ホストに送る機器のこと．セグメント同士の橋渡しを行う．
+ホスト・・・ルータではないコンピュータのこと
+ノード・・・ネットワークにつながったコンピュータの総称
+デフォルトルート・・・デフォルトルートとは、コンピュータネットワークのルーティングテーブルにおいて、全ての宛先を示す特殊な経路情報
+セグメント・・・なんらかの基準により分割した物理的なネットワーク断片
+サブネットマスク・・・ネットワーク部を1に，ホスト部を0にした32ビットの整数．これをIPアドレスのビット列とAND演算するとネットワークアドレスを取り出せる．
+
+IPv4アドレス・・・32ビット(2の32乗)で表される．1か0が32個連なるが，人には分かりにくいので，それぞれ8ビットごとに区切り，さらにその数字を10進数を使って表すことによって分かりやすくしている．例↓
+00000000000000000000000000000000
+↓
+00000000.00000000.00000000.00000000
+↓
+192.10.10.1
+IPv4アドレスは2つの部分に分かれている→ネットワーク部とホスト部
+ネットワーク部はセグメントを表し，ホスト部はホストを表す．→ネットワーク部が同じなら同じセグメント
+前半24ビットがネットワーク部，後半8ビットがホスト部を表す．
+192.10.10(ネット部).1(ホスト部)
+192.10.10.0/24→ネットワーク部は24ビット目で分けるということを表している．→CIDR表記
+192.10.10.0/24→デフォルトゲート(0.0.0.0/0)
+
+
+
+# Network Namespace
+参考：https://hawksnowlog.blogspot.com/2021/05/getting-started-network-namespace.html
+
+
+Network Namespace
+Natwork Namespaceを作る
+```$ sudo ip netns add [name]```
+Network Namespaceを確認する
+```$ ip netns list```
+Network Namespaceの環境でIPアドレスを確認する
+```$ ip address show```
+```$ sudo ip netns exec [filename] ip address show```
+NetworkNamespaceは再起動されると消える．
+
+Network Namaspaceの環境をつかってシェルを起動できる
+```$ sudo ip netns exec [name] bash```
+
+
+
+
+Network Namespaceを使うと，ネットワーク的にはシステムから独立した領域を作れ，別にLinuxをインストールしたマシンを用意したように見える．
