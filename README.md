@@ -108,7 +108,10 @@ default via 192.168.10.1 dev wlan0 proto dhcp src 192.168.10.8 metric 304
 192.168.10.0/24 dev wlan0 proto dhcp scope link src 192.168.10.8 metric 304 
 ```
 
-
+# トランスポート層
+## UDP
+サーバークライアント方式```$ nc```
+## TCP
 
 
 # 用語
