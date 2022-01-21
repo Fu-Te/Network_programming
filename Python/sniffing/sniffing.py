@@ -6,5 +6,5 @@ def get_mac(ip_address):
         return r[Ether].src
     return None
 
-ip = '192.168.1.9'
+ip = '127.0.0.1'
 get_mac(ip)

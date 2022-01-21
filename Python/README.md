@@ -1,158 +1,115 @@
-# ネットワーク系の学習のためのリポジトリ．
-ネットワーク分野に興味があるので，プログラム言語を使って様々なことをしてみたい，ネットワークを用いてなにか作りたいという思いから，プログラミングをしながらネットワークを学習したい．
+# ネットワークプログラムを試すためのリポジトリ
+動作確認済み:Python3.9.4
+RustとPython
 
-ソケットで相手のpcと接続して，そこでosを使ってファイルパス等の確認をする．
-ファイルを確認したら，重要なデータが入ってそうなファイルの取得を試みる．
+# 注意事項(必ず読んでください)
+ポートスキャン，盗聴等，不正アクセスにも使える技術が実装されているが，**決して第3者のサーバに対して実行しないようにしてください**.不正アクセスの事前調査とみなされる可能性があります．
+本リポジトリに存在するプログラムを利用し，不正アクセスに利用したとしても，本リポジトリ所有者は一切の責任を負いません．
+
+Although it implements techniques that can be used for unauthorized access, such as port scanning, eavesdropping, etc., it should never be run against a third party's server. **Never run against a third party server**, as it may be considered as a preliminary investigation for unauthorized access.
+The owner of this repository is not responsible for the use of the programs in this repository for unauthorized access.
 
 
-# 必要なライブラリ
-socat scapy
+# 免責
+このリポジトリに存在するコードを利用し，いかなる不利益を被っても，本リポジトリの所有者は一切責任を負いません．
+
+The owner of this repository is not responsible for any disadvantage you may suffer by using the code in this repository.
+
+# Python
+## port_scanner
+[参考](https://www.amiya.co.jp/column/port_scan_20200514.html)
+開いているポート番号を探すことができる．
+ポートスキャンには
+1.TCPスキャン
+2.SYNスキャン
+3.FINスキャン:ポートに接続終了を意味するFINを投げ，ポートがオープンならRST(中断，拒否)を返す
+4.クリスマスツリースキャン:標的となるポートにFIN，緊急確認をするURG，PUSHパケットを送信する．対象がオープンなら何も帰ってこない．クローズならRSTが帰ってくる
+5.NULLスキャン：何のフラグも立てないパケットを送る．オープンなら何も帰ってこない．クローズならRST
+6.UDPスキャン：UDPスキャンでは，UDPで待ち受けているサービス状態を判断するために行う．オープンなら何も帰らない．クローズならICMP port unreachableが帰ってくる
+がある
+
+ポートスキャンの対策法
+1.使ってないポートを閉じる
+2.セキュリティソフト
+3.OS,softwareアップデート
+4.不正侵入検知システム
+
+nmapコマンドを使ってポートスキャンをすることもできる．
+
 ```
-pip install socat scapy
+$ nmap -sT -p 1-65535 ipaddr
 ```
-でライブラリを入れ，コードを実行してください．
+オプションに-sAをつけるとファイアウォールの有無を調べられる
+```
+$ nmap -sA ipaddr
+```
+相手のOSを調べる
+```
+$ nmap -O ipaddr
+```
 
-python3.9.7で動作確認
 
-# Ethernet
-Macアドレスを使う．
-イーサネットでの役割・・・近隣までの荷物の配達
-送信元・宛先MACアドレスは，ルータを通過すると異なる．違うセグメントにIPがあるときは，そこのセグメントに行けるルータのMACアドレスが宛先となり送信元はデータを送信したホストのMACアドレス，そのルータから目的のホストに届けるときは，送信元がルータのMACアドレスになり宛先がホストのMACアドレスになる．
+### tcp_scan.py
+3wayhandshakeで接続し，開いているポートを特定します．
+ログが残りやすい
 
+### syn_portscan.py
+synパケットを投げて，
+1．syn+ackが帰って来ればポートが空いてる．
+2．rst+ackが帰ってきたらポートは閉じている
+ステルススキャン，ログが残りにくい
+
+
+### thread_port_scanner.py
+socketを使ったポートスキャナー．実行速度が速い．
+https://www.finddevguides.com/Python-penetration-testing-network-scanner
+上記のサイトを参考
+
+## sniffing(盗聴) 
+[参考](https://www.finddevguides.com/Python-penetration-testing-network-packet-sniffing)
+特定のネットワークを通過するすべての通信を監視，キャプチャできる．
+保護されているトラフィックと保護されていないトラフィックの両方を見ることができる．
+以下は簡単に盗聴できるプロトコル
+HTTP:暗号化せずにクリアテキストで情報を送信するために使用される
+SMTP:電子メールの転送に使用される
+POP:サーバからメールを受信するために使用
+FTP:ファイル送信に使われる
+IMAP:メール転送
+Telnet:遠隔操作とか
 
 ## arp
-参考：http://win.kororo.jp/archi/tcp_ip/arp_rarp.php
+arp_spoofingやarp_poisoningは，偽の情報をARPテーブルに登録させ，デフォルトゲートウェイと標的の間に入ってパケットを中継し，盗聴や改ざんを行う
 
-arpはIPv4のときにもちいられる．
-IPアドレスを持った相手とイーサネットで通信するには，相手のMACアドレスを知っている必要がある．
-宛先のMACアドレスをff:ff:ff:ff:ff:ffとし，パケットを送信することで，Macアドレスを返してもらえる．
-送信元MACアドレスを偽装することでなりすましも可能
-```$ arp -a```
-
-## rarp
-参考：http://win.kororo.jp/archi/tcp_ip/arp_rarp.php
+### arp_spoofing.py
+[参考](https://www.finddevguides.com/Python-penetration-testing-arp-spoofing)
+悪意のある攻撃者がローカルエリアネットワークを介して偽造されたARP要求を送信する攻撃の一種
 
 
-MACアドレスからIPアドレスの情報を取得できる．
-自分のIPアドレスがわからない時などに，使ったりする．
+### arp_poisoning.py
+ターゲットとゲートウェイのARPテーブルにおけるMACアドレスを書き換える
+APRテーブルを書き換え，どのような通信をしているか盗聴できる．arper.pcapが生成されるので，それをみて解析可能．
+## watching_pcap
+pcapの中身を見る
+watch_pcapの方は，ポート番号を指定できる
+watch_pcap2は何も指定できない
+watch_pcap3は
+
+## client.py & server.py
+socket通信を用いたclient,serverモデル
+
+## syn_scan.py
+synパケットを投げる
+
+## main.py
+いろんな機能まとめたやつ
+
+## 3way_handshake.py
+3wayハンドシェイクを実現するクラス
 
 
-IPv6の場合はICMPv6の近傍探索が使われる．
-
-
-
-
-# IP
-IPアドレスを使う．
-これらのコマンドではICMPプロトコルが内部的に使われている．ICMPは通信で生じたエラーの通知など様々な用途で用いられる．
-ICMPのエコーリクエスト(Echo request)とエコーリプライ(Echo reply)というメッセージをやりとりする．
-
-マニュアル（オプションについて知りたい時）は```$ man [command name]```
-
-## ping
-TCP/IPのネットワーク疎通を確認する．
-```$ ping 192.168.1.1```
-なんらかのエラーが表示されるか応答に対応する表示がないときは
-1.通信環境に影響があり，パケットが破棄された
-2.インターネットに接続できていない
-3.宛先あるいは経路にICMPのメッセージを破棄するネットワークが存在する．
-
-## tcpdump
-コンピュータの中を流れる通信を覗き見できる．（パケットキャプチャ，スニッフィング）
-
-[参考](https://xtech.nikkei.com/it/article/COLUMN/20140512/556024/)
-
-1.すべてのインターフェースをキャプチャする```$ sudo tcpdump ```
-2.ASCIIで見たい時```$ sudo tcpdump -A```
-3.インターフェースを指定```$ sudo tcpdump -i [interface]```
-4.[filename]で指定したファイルに結果を出力```$ sudo tcpdump -w [filename]```
-5.tcpdumpでとったキャプチャ結果を読み込む```$ sudo tcpdump -r [filename]```
-6.自ホスト宛以外のデータはキャプチャしない```$ sudo tcpdump -p```
-7.送信元ipアドレスを指定```$ tcpdump src host [src_ip]```
-8.送信先ipアドレスを指定```$ tcpdump dst host [dst_ip]```
-9.送信元もしくは送信先にipアドレスを指定```$ tcpdump host [target_ip]```
-10.送信元もしくは送信先にipアドレスレンジを指定```$tcpdump net [dst_net] mask [net_mask]```
-11.送信元ipアドレスレンジを指定```tcpdump src net [src_net] mask [net_mask]```
-12.送信先ipアドレスレンジを指定```tcpdump dst net [dst_net] mask [net_mask]```
-13.送信元ポート番号を指定```tcpdump src port [port]```
-14.送信先ポート番号を指定```tcpdump dst port [port]```
-15.送信先もしくは送信元ポート番号を指定```tcpdump port [port]```
-それぞれの条件をandやorで繋ぐこともできる．
-ex```tcpdump port 80 and host 192.168.1.1```
-
-## traceroute
-[参考](https://atmarkit.itmedia.co.jp/ait/articles/0108/30/news003.html)
-パケットがどのような道順を通って目的地まで届くのかを確認できる．
-ネットワークのトラブルシューティングでよく使われる．
-```$ traceroute -n 192.168.1.1```
-
-IPプロトコルのTTL（TimeToLive）フィールドを使う．TTLを1つずつ増やし，目的地まで送る．そうすることで，パケットを破棄した経路状のルータから，ICMPの時間切れメッセージが返ってきて，そのメッセージには送信元IP（ルータのIPアドレス）がある．時間切れメッセージを送ってきたルータを並べることで経路を調べられる．
-
-## ip route show
-参考1:https://www.ibm.com/docs/ja/power7?topic=commands-netstat-command
-
-
-ルーティングテーブルの確認をする
-Linux ```$ ip route show ```
-mac ```$netstat -rn```
-ルーティングテーブルはノードがそれぞれ保持している．
-Defaultはデフォルトルート
-192.168.10.1/32・・・/32のような書き方はIPアドレスをまとめて宛先として指定している．
-
-実行結果↓
-```
-default via 192.168.10.1 dev wlan0 proto dhcp src 192.168.10.8 metric 304 
-169.254.0.0/16 dev usb0 scope link src 169.254.234.178 metric 203 
-192.168.10.0/24 dev wlan0 proto dhcp scope link src 192.168.10.8 metric 304 
-```
-
-
-
-
-# 用語
-ルータ・・・別のルータまたはホストから送られてきたパケットを次のルータ，ホストに送る機器のこと．セグメント同士の橋渡しを行う．
-ホスト・・・ルータではないコンピュータのこと
-ノード・・・ネットワークにつながったコンピュータの総称
-デフォルトルート・・・デフォルトルートとは、コンピュータネットワークのルーティングテーブルにおいて、全ての宛先を示す特殊な経路情報
-セグメント・・・なんらかの基準により分割した物理的なネットワーク断片
-サブネットマスク・・・ネットワーク部を1に，ホスト部を0にした32ビットの整数．これをIPアドレスのビット列とAND演算するとネットワークアドレスを取り出せる．
-MACアドレス・・・48ビットの整数．一意な識別子．上位24ビット→ベンダー，下位24ビット→ベンダーが割り当てる数字．
-ルータ・・・ネットワーク層でパケットを転送する機器
-ブリッジ・・・データリンク層でフレームを転送する機器のこと．
-
-IPv4アドレス・・・32ビット(2の32乗)で表される．1か0が32個連なるが，人には分かりにくいので，それぞれ8ビットごとに区切り，さらにその数字を10進数を使って表すことによって分かりやすくしている．例↓
-00000000000000000000000000000000
-↓
-00000000.00000000.00000000.00000000
-↓
-192.10.10.1
-IPv4アドレスは2つの部分に分かれている→ネットワーク部とホスト部
-ネットワーク部はセグメントを表し，ホスト部はホストを表す．→ネットワーク部が同じなら同じセグメント
-前半24ビットがネットワーク部，後半8ビットがホスト部を表す．
-192.10.10(ネット部).1(ホスト部)
-192.10.10.0/24→ネットワーク部は24ビット目で分けるということを表している．→CIDR表記
-192.10.10.0/24→デフォルトゲート(0.0.0.0/0)
-
-
-
-# Network Namespace
-参考：https://hawksnowlog.blogspot.com/2021/05/getting-started-network-namespace.html
-
-
-Network Namespace
-Natwork Namespaceを作る
-```$ sudo ip netns add [name]```
-Network Namespaceを確認する
-```$ ip netns list```
-Network Namespaceの環境でIPアドレスを確認する
-```$ ip address show```
-```$ sudo ip netns exec [filename] ip address show```
-NetworkNamespaceは再起動されると消える．
-
-Network Namaspaceの環境をつかってシェルを起動できる
-```$ sudo ip netns exec [name] bash```
-
-
-
-
-Network Namespaceを使うと，ネットワーク的にはシステムから独立した領域を作れ，別にLinuxをインストールしたマシンを用意したように見える．
+# これから勉強が必要なもの
+threading
+scapy
+sokcet
+subprocess
+os
