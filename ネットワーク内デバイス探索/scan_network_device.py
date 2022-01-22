@@ -1,4 +1,3 @@
-from socket import timeout
 from scapy.all import *
 import subprocess as sbp
 
@@ -21,9 +20,7 @@ def get_ipaddr(my_ipaddr):
 # ICMPでブロードキャストを流し，返答を受け取ることで各種アドレスを特定
 def broadcastaddr():
     # ICMPパケットを流して結果を1つだけ受け取る dstの後をブロードキャストアドレスにしたいところ
-    packets = Ether(dst='ff:ff:ff:ff:ff:ff')/IP(dst='192.168.1.0/24')/ICMP()
-    answers = srp(packets,timeout=2)
-    print(answers)
+    packets = srp1(Ether(dst='ff:ff:ff:ff:ff:ff')/ARP(op=2))
 
 # arp
 def get_macaddr():
