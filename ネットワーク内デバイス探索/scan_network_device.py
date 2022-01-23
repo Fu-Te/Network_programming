@@ -20,7 +20,12 @@ def get_ipaddr(my_ipaddr):
 # ICMPでブロードキャストを流し，返答を受け取ることで各種アドレスを特定
 def broadcastaddr():
     # ICMPパケットを流して結果を1つだけ受け取る dstの後をブロードキャストアドレスにしたいところ
-    packets = srp1(Ether(dst='ff:ff:ff:ff:ff:ff')/ARP(op=2))
+    # ネットワーク部だけ入力してもらって，後は繰り返す？ 192.168.1.0~192.168.1.254みたいに．
+    broadcast_ipaddr = 
+    for i in range (0,255):
+        receives = []
+        packets = srp1(Ether(dst='ff:ff:ff:ff:ff:ff')/ARP(op=1,pdst=))
+        receives.append(packets)
 
 # arp
 def get_macaddr():
