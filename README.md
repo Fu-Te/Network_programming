@@ -7,9 +7,14 @@ IBM資料: https://www.ibm.com/docs/ja/aix/7.2?topic=networking
 ソケットで相手のpcと接続して，そこでosを使ってファイルパス等の確認をする．
 ファイルを確認したら，重要なデータが入ってそうなファイルの取得を試みる．
 
+# dockerを用意してあります
+dockerを利用する場合は，
+```cd docker/python-docker```
+```docker compose up -d --build```
+で作成が可能です．
 
 # 必要なライブラリ
-socat scapy
+socat scapy subprocess ipaddress
 ```
 pip install socat scapy
 ```
