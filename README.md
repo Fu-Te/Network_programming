@@ -7,6 +7,14 @@ IBM資料: https://www.ibm.com/docs/ja/aix/7.2?topic=networking
 ソケットで相手のpcと接続して，そこでosを使ってファイルパス等の確認をする．
 ファイルを確認したら，重要なデータが入ってそうなファイルの取得を試みる．
 
+# 注意事項(Warning)
+このレポジトリに存在するプログラムファイルは，許可されたネットワーク，対象にのみ使用するようにしてください．
+何かしらのトラブル等に関して，本レポジトリ所有者は責任は一切所有しません．
+
+The program files in this repository should be used only on authorized networks and for authorized host.
+The owner of this repository assumes no responsibility for any problems that may arise.
+
+
 # dockerを用意してあります
 dockerを利用する場合は，
 ```cd docker/python-docker```
