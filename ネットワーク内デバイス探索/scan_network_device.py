@@ -34,18 +34,21 @@ def broadcastaddr(network_part):
     #broadcast_ipaddr = 
     receives_ICMP = []
     receives_ARP = []
-    for i in range (1,10):
+    for i in range (0,9):
         i = str(i)
         dst_addr = network_part + i
         
         print('現在探索中のアドレスは{}'.format(dst_addr))
         
         #results = srp1(Ether(dst='ff:ff:ff:ff:ff:ff')/ARP(op=1,pdst=dst_addr))
-        results = sr1(IP(dst = dst_addr)/ICMP(),timeout = 1)
-        receives_ICMP.append(results)
+        #results = srp1(IP(dst = dst_addr)/ICMP(),timeout = 1,iface='en0')
+        #receives_ICMP.append(results)
         
-        results = sr1(Ether(dst='ff:ff:ff:ff:ff:ff') / ARP(op=1, pdst = dst_addr),timeout = 3)
-        receives_ARP.append(results)
+        frame = Ether(dst='ff:ff:ff:ff:ff:ff') / ARP(op=1, pdst = dst_addr)
+        receive = (srp1(frame))
+        #receive = receive.hex()
+        #receive.decode('hex')
+        print(receive)
         
         
     
@@ -65,3 +68,4 @@ def get_hostname():
 if __name__ == '__main__':
     network_part = get_network_part('192.168.1.1')
     print(broadcastaddr(network_part))
+    

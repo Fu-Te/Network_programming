@@ -180,3 +180,30 @@ Network Namaspaceの環境をつかってシェルを起動できる
 
 
 Network Namespaceを使うと，ネットワーク的にはシステムから独立した領域を作れ，別にLinuxをインストールしたマシンを用意したように見える．
+
+# Error
+以下のエラーに悩まされているところである
+
+        PIP package scapy-python3 used to provide scapy3k, which was a fork from scapy implementing python3 compatibility since 2016. This package was included in some of the Linux distros under name of python3-scapy. Starting from scapy version 2.4 (released in March, 2018) mainstream scapy supports python3. To reduce any confusion scapy3k was renamed to kamene. 
+You should use either pip package kamene for scapy3k (see http://github.com/phaethon/kamene for differences in use) or mainstream scapy (pip package scapy, http://github.com/secdev/scapy).  
+
+Traceback (most recent call last):
+  File "/opt/homebrew/bin/scapy", line 8, in <module>
+    sys.exit(interact())
+  File "/opt/homebrew/lib/python3.9/site-packages/scapy/main.py", line 550, in interact
+    SESSION, GLOBKEYS = init_session(session_name, mydict)
+  File "/opt/homebrew/lib/python3.9/site-packages/scapy/main.py", line 411, in init_session
+    importlib.import_module(".all", "scapy").__dict__
+  File "/opt/homebrew/Cellar/python@3.9/3.9.10/Frameworks/Python.framework/Versions/3.9/lib/python3.9/importlib/__init__.py", line 127, in import_module
+    return _bootstrap._gcd_import(name[level:], package, level)
+  File "<frozen importlib._bootstrap>", line 1030, in _gcd_import
+  File "<frozen importlib._bootstrap>", line 1007, in _find_and_load
+  File "<frozen importlib._bootstrap>", line 986, in _find_and_load_unlocked
+  File "<frozen importlib._bootstrap>", line 680, in _load_unlocked
+  File "<frozen importlib._bootstrap_external>", line 850, in exec_module
+  File "<frozen importlib._bootstrap>", line 228, in _call_with_frames_removed
+  File "/opt/homebrew/lib/python3.9/site-packages/scapy/all.py", line 5, in <module>
+    raise Exception(msg)
+Exception: 
+        PIP package scapy-python3 used to provide scapy3k, which was a fork from scapy implementing python3 compatibility since 2016. This package was included in some of the Linux distros under name of python3-scapy. Starting from scapy version 2.4 (released in March, 2018) mainstream scapy supports python3. To reduce any confusion scapy3k was renamed to kamene. 
+You should use either pip package kamene for scapy3k (see http://github.com/phaethon/kamene for differences in use) or mainstream scapy (pip package scapy, http://github.com/secdev/scapy).  

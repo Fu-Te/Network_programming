@@ -4,4 +4,7 @@ from scapy.all import *
 target_ip = input('対象ipアドレス:')
 
 frame = Ether(dst='ff:ff:ff:ff:ff:ff') / ARP(op=1, pdst = target_ip)
-print(srp1(frame))
+receive = (srp1(frame))
+receive = bytes.hex(receive)
+#receive.decode('hex')
+print(receive)
