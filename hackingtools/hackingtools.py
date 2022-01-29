@@ -1,5 +1,4 @@
 from socket import timeout
-from itsdangerous import exc
 from scapy.all import *
 import subprocess as sbp
 import netifaces
@@ -148,7 +147,7 @@ def make_df(ip_addr_list,mac_addr_list,host_list,vendor_name,vendor_address):
     
     return df
 
-if __name__ == '__main__':
+def lan_scan():
     own_ip = get_own_ip()
     network_part = get_network_part(own_ip)
     ip_addr_list,mac_addr_list =get_addr(network_part)
@@ -156,3 +155,6 @@ if __name__ == '__main__':
     vendor_list,vendor_address=get_vendor_name(mac_addr_list)
     df = make_df(ip_addr_list,mac_addr_list,host_list,vendor_list,vendor_address)
     print(df.head())
+
+if __name__ == '__main__':
+    lan_scan()
