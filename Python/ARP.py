@@ -5,6 +5,5 @@ target_ip = input('対象ipアドレス:')
 
 frame = Ether(dst='ff:ff:ff:ff:ff:ff') / ARP(op=1, pdst = target_ip)
 receive = (srp1(frame))
-receive = bytes.hex(receive)
-#receive.decode('hex')
-print(receive)
+
+print(receive[Ether].src)
