@@ -1,0 +1,27 @@
+<title>HappyHackingTools</title>
+
+<h1>HappyHackingTools</h1>
+
+
+<h3>LanScan<h3>
+    <body>
+        <h6>LAN内に存在するデバイスを探索します．</h6>
+        {% if lanscan_result %}
+        <h6>結果</h6>
+        <br> {{lanscan_result}}
+        {% endif %}
+        <form action="./" method="POST">
+            <input type="submit" />
+        </form>
+
+    </body>
+
+
+
+
+
+
+
+
+
+<footer>Powered by Fu-Te</footer>
