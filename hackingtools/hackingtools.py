@@ -10,6 +10,8 @@ import urllib.request as urllib2
 import json
 import codecs
 
+
+
 #自身のIPアドレスを取得する
 def get_own_ip():
     ip = netifaces.ifaddresses('en0')[netifaces.AF_INET][0]['addr']
