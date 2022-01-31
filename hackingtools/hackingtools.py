@@ -51,7 +51,7 @@ def get_addr(network_part):
     ip_addr_list = []
     
     
-    for i in range (0,10):
+    for i in range (0,20):
         i = str(i)
         dst_addr = network_part + i
         ip_addr_list.append(dst_addr)
@@ -144,7 +144,8 @@ def make_df(ip_addr_list,mac_addr_list,host_list,vendor_name,vendor_address):
     df['vendor_address'] = vendor_address
     
     df=df.dropna(subset=['MAC'])
-    df.to_csv('test.csv',index=False)
+    #df.to_csv('test.csv',index=False)
+    df.to_html('templates/result.html')
     
     
     return df

@@ -1,6 +1,7 @@
-from urllib import request
-from flask import Flask, render_template,request
+
+from flask import Flask, render_template,request,redirect
 from hackingtools import lan_scan
+import pandas as pd
 
 
 app = Flask(__name__, static_folder='.', static_url_path='')
@@ -12,7 +13,11 @@ def flask_lanscan():
     if request.method == 'POST':
         lanscan_result = lan_scan()
         
-        return render_template('index.html',lanscan_result=lanscan_result)
+        return redirect('lanscan')
+    
+@app.route('/lanscan')
+def result():
+    return render_template('result.html')
         
 if __name__ == '__main__':
     app.run(port=8000, debug=True)
