@@ -13,9 +13,9 @@ def flask_lanscan():
     if request.method == 'POST':
         lanscan_result = lan_scan()
         
-        return redirect('lanscan')
+        return redirect('lanscan_result')
     
-@app.route('/lanscan')
+@app.route('/lanscan_result')
 def result():
     return render_template('result.html')
         
