@@ -1,0 +1,17 @@
+<title>Binary_analysis</title>
+<h1><a href='/'>HappyHackingTools</a></h1>
+<h1>Binary_analysis</h1>
+
+<body>
+	<h2>バイナリ解析</h2>
+    {% if result %}
+    <h3>結果</h3>
+    <br> {{result}}
+    <br>
+    <hr> {% endif %} ファイルを選択して送信してください
+    <br>
+    <form action="./binary" method="POST" enctype="multipart/form-data">
+        <input type="file" name="file" />
+        <input type="submit" />
+    </form>
+</body>

@@ -9,7 +9,11 @@ import numpy as np
 import urllib.request as urllib2
 import json
 import codecs
-
+import time
+import threading
+from queue import Queue
+import os
+from tqdm import tqdm
 
 
 #自身のIPアドレスを取得する
@@ -51,7 +55,7 @@ def get_addr(network_part):
     ip_addr_list = []
     
     
-    for i in range (0,20):
+    for i in range (0,10):
         i = str(i)
         dst_addr = network_part + i
         ip_addr_list.append(dst_addr)
@@ -158,6 +162,41 @@ def lan_scan():
     vendor_list,vendor_address=get_vendor_name(mac_addr_list)
     df = make_df(ip_addr_list,mac_addr_list,host_list,vendor_list,vendor_address)
     print(df.head())
+    
+def port_scan(ip,port=0,port_end=35535):
+    ip = ip
+    port = int(port)
+    port_end = int(port_end)
+    
+    while port_end<port:
+        tmp = port
+        port = port_end
+        port_end = port
+        
+        if port == port_end:
+            break
 
+    open_port = []
+    
+    for port in tqdm(range(port,port_end+1)):
+        s = socket.socket()
+        errno = s.connect_ex((ip,port))
+        s.close()
+        
+        if errno == 0:
+            print('port {} is open',port)
+            open_port.append(port)
+        else:
+            print('{} is close', port)
+            print(os.strerror(errno))
+    return open_port
+
+def binary_analysis(file):
+    f = open(file,'rb')
+    f.read()
+    
+    return f
+    
+    
 if __name__ == '__main__':
     lan_scan()
