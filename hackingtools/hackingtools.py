@@ -191,11 +191,6 @@ def port_scan(ip,port=0,port_end=35535):
             print(os.strerror(errno))
     return open_port
 
-def binary_analysis(file):
-    f = open(file,'rb')
-    f.read()
-    
-    return f
     
     
 if __name__ == '__main__':

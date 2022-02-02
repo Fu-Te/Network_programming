@@ -1,6 +1,6 @@
 
 from flask import Flask, render_template,request,redirect
-from hackingtools import lan_scan,port_scan
+from hackingtools import lan_scan,port_scan,binary_analysis
 import pandas as pd
 import webbrowser
 import os
@@ -51,11 +51,10 @@ def flask_binary():
         file.save(os.path.join('./file/',file.filename))
         file = './file/'+ file.filename
         with open(file,'rb') as f:
-            binary=f.read()
-            result=binary.decode('utf-8',errors='ignore')
+            b=f.read()
+            result=b.decode()
 
-
-        return render_template('binary.html',result=result,binary=binary)
+        return render_template('binary.html',result=result)
     
 if __name__ == '__main__':
     app.run(port=8000, debug=True)
