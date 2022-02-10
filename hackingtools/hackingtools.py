@@ -14,6 +14,7 @@ import threading
 from queue import Queue
 import os
 from tqdm import tqdm
+import threading
 
 
 #自身のIPアドレスを取得する
@@ -97,7 +98,7 @@ def get_index(mac_addr_list):
             index = mac_addr_list.index(mac)
             index_list.append(index)
         except:
-            print('macアドレスが存在しない．')
+            print('macアドレスが存在しない.')
             
             
     for number in index_list:
