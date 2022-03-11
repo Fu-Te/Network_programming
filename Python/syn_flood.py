@@ -2,7 +2,7 @@ from scapy.all import *
 import threading
 
 class SendPacket(threading.Thread):
-    def __init__(self,src_ip='1.2.3.4',dst_ip='192.168.1.20',src_port=12345,dst_port=80,file_size=1024,sending_count=5):
+    def __init__(self,src_ip,dst_ip,src_port,dst_port,file_size,sending_count):
         self.src_ip=src_ip
         self.dst_ip=dst_ip
         self.src_port=src_port
@@ -23,7 +23,7 @@ class SendPacket(threading.Thread):
         packet=ip/tcp/raw
         return packet
     
-    def __sending_packet(self,packet,):
+    def __sending_packet(self,packet,sending_count):
         a=a
     
     def run(self):
@@ -61,7 +61,8 @@ dst_ip='192.168.1.120'
 src_port=12345
 dst_port=80
 filesize=1024
+sending_count=5
 
 
-send=SendPacket(src_ip,dst_ip,src_port,dst_port,filesize)
+send=SendPacket(src_ip,dst_ip,src_port,dst_port,filesize,sending_count)
 send.make_packet()
