@@ -1,0 +1,12 @@
+C:\Users\kyodo\Documents\GitHub\Network_programming\Rust\quic-echo-server\target\debug\deps\net2-e399427c59e24dcf.rmeta: C:\Users\kyodo\.cargo\registry\src\github.com-1ecc6299db9ec823\net2-0.2.39\src\lib.rs C:\Users\kyodo\.cargo\registry\src\github.com-1ecc6299db9ec823\net2-0.2.39\src\tcp.rs C:\Users\kyodo\.cargo\registry\src\github.com-1ecc6299db9ec823\net2-0.2.39\src\udp.rs C:\Users\kyodo\.cargo\registry\src\github.com-1ecc6299db9ec823\net2-0.2.39\src\socket.rs C:\Users\kyodo\.cargo\registry\src\github.com-1ecc6299db9ec823\net2-0.2.39\src\ext.rs C:\Users\kyodo\.cargo\registry\src\github.com-1ecc6299db9ec823\net2-0.2.39\src\utils.rs C:\Users\kyodo\.cargo\registry\src\github.com-1ecc6299db9ec823\net2-0.2.39\src\sys\windows\mod.rs C:\Users\kyodo\.cargo\registry\src\github.com-1ecc6299db9ec823\net2-0.2.39\src\sys\windows\impls.rs
+
+C:\Users\kyodo\Documents\GitHub\Network_programming\Rust\quic-echo-server\target\debug\deps\net2-e399427c59e24dcf.d: C:\Users\kyodo\.cargo\registry\src\github.com-1ecc6299db9ec823\net2-0.2.39\src\lib.rs C:\Users\kyodo\.cargo\registry\src\github.com-1ecc6299db9ec823\net2-0.2.39\src\tcp.rs C:\Users\kyodo\.cargo\registry\src\github.com-1ecc6299db9ec823\net2-0.2.39\src\udp.rs C:\Users\kyodo\.cargo\registry\src\github.com-1ecc6299db9ec823\net2-0.2.39\src\socket.rs C:\Users\kyodo\.cargo\registry\src\github.com-1ecc6299db9ec823\net2-0.2.39\src\ext.rs C:\Users\kyodo\.cargo\registry\src\github.com-1ecc6299db9ec823\net2-0.2.39\src\utils.rs C:\Users\kyodo\.cargo\registry\src\github.com-1ecc6299db9ec823\net2-0.2.39\src\sys\windows\mod.rs C:\Users\kyodo\.cargo\registry\src\github.com-1ecc6299db9ec823\net2-0.2.39\src\sys\windows\impls.rs
+
+C:\Users\kyodo\.cargo\registry\src\github.com-1ecc6299db9ec823\net2-0.2.39\src\lib.rs:
+C:\Users\kyodo\.cargo\registry\src\github.com-1ecc6299db9ec823\net2-0.2.39\src\tcp.rs:
+C:\Users\kyodo\.cargo\registry\src\github.com-1ecc6299db9ec823\net2-0.2.39\src\udp.rs:
+C:\Users\kyodo\.cargo\registry\src\github.com-1ecc6299db9ec823\net2-0.2.39\src\socket.rs:
+C:\Users\kyodo\.cargo\registry\src\github.com-1ecc6299db9ec823\net2-0.2.39\src\ext.rs:
+C:\Users\kyodo\.cargo\registry\src\github.com-1ecc6299db9ec823\net2-0.2.39\src\utils.rs:
+C:\Users\kyodo\.cargo\registry\src\github.com-1ecc6299db9ec823\net2-0.2.39\src\sys\windows\mod.rs:
+C:\Users\kyodo\.cargo\registry\src\github.com-1ecc6299db9ec823\net2-0.2.39\src\sys\windows\impls.rs:

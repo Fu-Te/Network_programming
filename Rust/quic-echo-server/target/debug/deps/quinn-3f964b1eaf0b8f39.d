@@ -1,0 +1,13 @@
+C:\Users\kyodo\Documents\GitHub\Network_programming\Rust\quic-echo-server\target\debug\deps\quinn-3f964b1eaf0b8f39.rmeta: C:\Users\kyodo\.cargo\registry\src\github.com-1ecc6299db9ec823\quinn-0.6.2\src\lib.rs C:\Users\kyodo\.cargo\registry\src\github.com-1ecc6299db9ec823\quinn-0.6.2\src\broadcast.rs C:\Users\kyodo\.cargo\registry\src\github.com-1ecc6299db9ec823\quinn-0.6.2\src\builders.rs C:\Users\kyodo\.cargo\registry\src\github.com-1ecc6299db9ec823\quinn-0.6.2\src\connection.rs C:\Users\kyodo\.cargo\registry\src\github.com-1ecc6299db9ec823\quinn-0.6.2\src\endpoint.rs C:\Users\kyodo\.cargo\registry\src\github.com-1ecc6299db9ec823\quinn-0.6.2\src\platform\mod.rs C:\Users\kyodo\.cargo\registry\src\github.com-1ecc6299db9ec823\quinn-0.6.2\src\platform\fallback.rs C:\Users\kyodo\.cargo\registry\src\github.com-1ecc6299db9ec823\quinn-0.6.2\src\streams.rs C:\Users\kyodo\.cargo\registry\src\github.com-1ecc6299db9ec823\quinn-0.6.2\src\udp.rs
+
+C:\Users\kyodo\Documents\GitHub\Network_programming\Rust\quic-echo-server\target\debug\deps\quinn-3f964b1eaf0b8f39.d: C:\Users\kyodo\.cargo\registry\src\github.com-1ecc6299db9ec823\quinn-0.6.2\src\lib.rs C:\Users\kyodo\.cargo\registry\src\github.com-1ecc6299db9ec823\quinn-0.6.2\src\broadcast.rs C:\Users\kyodo\.cargo\registry\src\github.com-1ecc6299db9ec823\quinn-0.6.2\src\builders.rs C:\Users\kyodo\.cargo\registry\src\github.com-1ecc6299db9ec823\quinn-0.6.2\src\connection.rs C:\Users\kyodo\.cargo\registry\src\github.com-1ecc6299db9ec823\quinn-0.6.2\src\endpoint.rs C:\Users\kyodo\.cargo\registry\src\github.com-1ecc6299db9ec823\quinn-0.6.2\src\platform\mod.rs C:\Users\kyodo\.cargo\registry\src\github.com-1ecc6299db9ec823\quinn-0.6.2\src\platform\fallback.rs C:\Users\kyodo\.cargo\registry\src\github.com-1ecc6299db9ec823\quinn-0.6.2\src\streams.rs C:\Users\kyodo\.cargo\registry\src\github.com-1ecc6299db9ec823\quinn-0.6.2\src\udp.rs
+
+C:\Users\kyodo\.cargo\registry\src\github.com-1ecc6299db9ec823\quinn-0.6.2\src\lib.rs:
+C:\Users\kyodo\.cargo\registry\src\github.com-1ecc6299db9ec823\quinn-0.6.2\src\broadcast.rs:
+C:\Users\kyodo\.cargo\registry\src\github.com-1ecc6299db9ec823\quinn-0.6.2\src\builders.rs:
+C:\Users\kyodo\.cargo\registry\src\github.com-1ecc6299db9ec823\quinn-0.6.2\src\connection.rs:
+C:\Users\kyodo\.cargo\registry\src\github.com-1ecc6299db9ec823\quinn-0.6.2\src\endpoint.rs:
+C:\Users\kyodo\.cargo\registry\src\github.com-1ecc6299db9ec823\quinn-0.6.2\src\platform\mod.rs:
+C:\Users\kyodo\.cargo\registry\src\github.com-1ecc6299db9ec823\quinn-0.6.2\src\platform\fallback.rs:
+C:\Users\kyodo\.cargo\registry\src\github.com-1ecc6299db9ec823\quinn-0.6.2\src\streams.rs:
+C:\Users\kyodo\.cargo\registry\src\github.com-1ecc6299db9ec823\quinn-0.6.2\src\udp.rs:

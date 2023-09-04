@@ -1,0 +1,9 @@
+C:\Users\kyodo\Documents\GitHub\Network_programming\Rust\quic-echo-client\target\debug\deps\futures_macro-616af6dc2bb11114.dll: C:\Users\kyodo\.cargo\registry\src\index.crates.io-6f17d22bba15001f\futures-macro-0.3.28\src\lib.rs C:\Users\kyodo\.cargo\registry\src\index.crates.io-6f17d22bba15001f\futures-macro-0.3.28\src\executor.rs C:\Users\kyodo\.cargo\registry\src\index.crates.io-6f17d22bba15001f\futures-macro-0.3.28\src\join.rs C:\Users\kyodo\.cargo\registry\src\index.crates.io-6f17d22bba15001f\futures-macro-0.3.28\src\select.rs C:\Users\kyodo\.cargo\registry\src\index.crates.io-6f17d22bba15001f\futures-macro-0.3.28\src\stream_select.rs
+
+C:\Users\kyodo\Documents\GitHub\Network_programming\Rust\quic-echo-client\target\debug\deps\futures_macro-616af6dc2bb11114.d: C:\Users\kyodo\.cargo\registry\src\index.crates.io-6f17d22bba15001f\futures-macro-0.3.28\src\lib.rs C:\Users\kyodo\.cargo\registry\src\index.crates.io-6f17d22bba15001f\futures-macro-0.3.28\src\executor.rs C:\Users\kyodo\.cargo\registry\src\index.crates.io-6f17d22bba15001f\futures-macro-0.3.28\src\join.rs C:\Users\kyodo\.cargo\registry\src\index.crates.io-6f17d22bba15001f\futures-macro-0.3.28\src\select.rs C:\Users\kyodo\.cargo\registry\src\index.crates.io-6f17d22bba15001f\futures-macro-0.3.28\src\stream_select.rs
+
+C:\Users\kyodo\.cargo\registry\src\index.crates.io-6f17d22bba15001f\futures-macro-0.3.28\src\lib.rs:
+C:\Users\kyodo\.cargo\registry\src\index.crates.io-6f17d22bba15001f\futures-macro-0.3.28\src\executor.rs:
+C:\Users\kyodo\.cargo\registry\src\index.crates.io-6f17d22bba15001f\futures-macro-0.3.28\src\join.rs:
+C:\Users\kyodo\.cargo\registry\src\index.crates.io-6f17d22bba15001f\futures-macro-0.3.28\src\select.rs:
+C:\Users\kyodo\.cargo\registry\src\index.crates.io-6f17d22bba15001f\futures-macro-0.3.28\src\stream_select.rs:
