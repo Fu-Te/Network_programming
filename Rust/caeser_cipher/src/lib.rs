@@ -45,3 +45,17 @@ pub mod caesar_cipher {
         return result;
     }
 }
+
+#[cfg(test)]
+mod tests {
+    use crate::caesar_cipher::caesar_encrypt;
+    #[test]
+    fn test_caesar() {
+        let text = "I LOVE YOU.";
+        let enc_text = caesar_encrypt(&text, 3);
+        let dec_text = caesar_encrypt(&text, -3);
+
+        assert_eq!(text, dec_text);
+        assert_eq!("L ORYH BRX.", enc_text)
+    }
+}
