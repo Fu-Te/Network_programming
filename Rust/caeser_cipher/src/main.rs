@@ -1,4 +1,4 @@
-use caeser_cipher::caesar_cipher::caesar_encrypt;
+use caesar_cipher_enc_dec::caesar_cipher::caesar_encrypt;
 fn main() {
     // 暗号化と復号化 --- (*1)
     let text = "I LOVE YOU.";

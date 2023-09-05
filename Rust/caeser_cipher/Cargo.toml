@@ -1,5 +1,5 @@
 [package]
-name = "caeser_cipher"
+name = "caesar_cipher_enc_dec"
 version = "0.1.0"
 edition = "2021"
 

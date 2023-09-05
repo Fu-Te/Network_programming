@@ -5,7 +5,7 @@
 ///
 /// # usage
 /// ```
-/// use caesar_cipher::caesar_encript;
+/// use caesar_cipher_enc_dec::caesar_cipher::caesar_encrypt;
 /// fn main(){
 /// let text = "I LOVE YOU";
 /// let enc_text = caesar_encrypt(&text, 3);
@@ -15,8 +15,10 @@
 /// # Example
 /// you can use this encrypt code for decrypt.
 ///  ```
+/// use crate::caesar_cipher_enc_dec::caesar_cipher::caesar_encrypt;
+/// let text = "I LOVE YOU";
 /// for i in 0..26{
-///     caesar_encrypt(&test, i)}
+///     caesar_encrypt(&text, i)}
 /// ```
 
 pub mod caesar_cipher {
@@ -53,7 +55,9 @@ mod tests {
     fn test_caesar() {
         let text = "I LOVE YOU.";
         let enc_text = caesar_encrypt(&text, 3);
-        let dec_text = caesar_encrypt(&text, -3);
+        let dec_text = caesar_encrypt(&enc_text, -3);
+        println!("enc_test:{}", enc_text);
+        println!("dec_text:{}", dec_text);
 
         assert_eq!(text, dec_text);
         assert_eq!("L ORYH BRX.", enc_text)
