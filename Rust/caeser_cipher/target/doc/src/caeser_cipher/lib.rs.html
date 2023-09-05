@@ -30,36 +30,66 @@
 <a href="#30" id="30">30</a>
 <a href="#31" id="31">31</a>
 <a href="#32" id="32">32</a>
-</pre></div><pre class="rust"><code><span class="doccomment">/// can easily use caesar_encrypt and decrypt.
-/// # caesar_encrypt
+<a href="#33" id="33">33</a>
+<a href="#34" id="34">34</a>
+<a href="#35" id="35">35</a>
+<a href="#36" id="36">36</a>
+<a href="#37" id="37">37</a>
+<a href="#38" id="38">38</a>
+<a href="#39" id="39">39</a>
+<a href="#40" id="40">40</a>
+<a href="#41" id="41">41</a>
+<a href="#42" id="42">42</a>
+<a href="#43" id="43">43</a>
+<a href="#44" id="44">44</a>
+<a href="#45" id="45">45</a>
+<a href="#46" id="46">46</a>
+<a href="#47" id="47">47</a>
+</pre></div><pre class="rust"><code><span class="doccomment">/// # caesar_encrypt
+///
+/// can easily use caesar_encrypt and decrypt.
 /// set text and shift number
+///
+/// # usage
+/// ```
+/// use caesar_cipher::caesar_encript;
+/// fn main(){
+/// let text = &quot;I LOVE YOU&quot;;
+/// let enc_text = caesar_encrypt(&amp;text, 3);
+/// let dec_text = caesar_encrypt(&amp;text, -3);
+/// }
+/// ```
+/// # Example
 /// you can use this encrypt code for decrypt.
-/// &#39;&#39;&#39;
+///  ```
 /// for i in 0..26{
 ///     caesar_encrypt(&amp;test, i)}
-/// &#39;&#39;&#39;
-</span><span class="kw">pub fn </span>caesar_encrypt(text: <span class="kw-2">&amp;</span>str, shift: i16) -&gt; String {
-    <span class="kw">let </span>a_code = <span class="string">&#39;A&#39; </span><span class="kw">as </span>i16;
-    <span class="kw">let </span>z_code = <span class="string">&#39;Z&#39; </span><span class="kw">as </span>i16;
+/// ```
 
-    <span class="kw">let </span><span class="kw-2">mut </span>result = String::new();
+</span><span class="kw">pub mod </span>caesar_cipher {
+    <span class="kw">pub fn </span>caesar_encrypt(text: <span class="kw-2">&amp;</span>str, shift: i16) -&gt; String {
+        <span class="kw">let </span>a_code = <span class="string">&#39;A&#39; </span><span class="kw">as </span>i16;
+        <span class="kw">let </span>z_code = <span class="string">&#39;Z&#39; </span><span class="kw">as </span>i16;
 
-    <span class="kw">for </span>ch <span class="kw">in </span>text.chars() {
-        <span class="comment">//小文字を大文字に変換
-        </span><span class="kw">let </span>ch = <span class="kw">if </span>ch.is_lowercase() {
-            ch.to_ascii_uppercase()
-        } <span class="kw">else </span>{
-            ch
-        };
-        <span class="kw">let </span>code = ch <span class="kw">as </span>i16;
+        <span class="kw">let </span><span class="kw-2">mut </span>result = String::new();
 
-        <span class="kw">if </span>a_code &lt;= code &amp;&amp; code &lt;= z_code {
-            <span class="kw">let </span>enc = ((code - a_code + shift + <span class="number">26</span>) % <span class="number">26 </span>+ a_code) <span class="kw">as </span>u8 <span class="kw">as </span>char;
-            result.push(enc);
-        } <span class="kw">else </span>{
-            result.push(ch);
+        <span class="kw">for </span>ch <span class="kw">in </span>text.chars() {
+            <span class="comment">//小文字を大文字に変換
+            </span><span class="kw">let </span>ch = <span class="kw">if </span>ch.is_lowercase() {
+                ch.to_ascii_uppercase()
+            } <span class="kw">else </span>{
+                ch
+            };
+            <span class="kw">let </span>code = ch <span class="kw">as </span>i16;
+
+            <span class="kw">if </span>a_code &lt;= code &amp;&amp; code &lt;= z_code {
+                <span class="kw">let </span>enc = ((code - a_code + shift + <span class="number">26</span>) % <span class="number">26 </span>+ a_code) <span class="kw">as </span>u8 <span class="kw">as </span>char;
+                result.push(enc);
+            } <span class="kw">else </span>{
+                result.push(ch);
+            }
         }
+        <span class="kw">return </span>result;
     }
-    <span class="kw">return </span>result;
 }
 </code></pre></div></section></main></body></html>

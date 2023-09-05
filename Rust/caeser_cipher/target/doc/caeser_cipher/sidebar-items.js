@@ -1,1 +1,1 @@
-window.SIDEBAR_ITEMS = {"fn":["caesar_encrypt"]};
+window.SIDEBAR_ITEMS = {"mod":["caesar_cipher"]};
