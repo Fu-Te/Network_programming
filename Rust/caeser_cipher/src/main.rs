@@ -1,5 +1,4 @@
-extern crate caesar_encrypt;
-use caesar_encrypt::caesar_encrypt;
+use caeser_cipher::caesar_cipher::caesar_encrypt;
 fn main() {
     // 暗号化と復号化 --- (*1)
     let text = "I LOVE YOU.";
