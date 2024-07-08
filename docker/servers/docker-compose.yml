@@ -1,0 +1,28 @@
+version: "3"
+
+#コンテナ
+services:
+  #ftp
+  ftp_server:
+    image: stilliard/pure-ftpd
+    ports:
+      - "21:21"
+      - "30000-30009:30000-30009"
+    environment:
+      - PUBLICHOST=0.0.0.0
+      - FTP_USER_NAME=uname
+      - FTP_USER_PASS=uP@ssw0rd
+      - FTP_USER_HOME=/home/uname
+    networks:
+      - my_network
+    restart: always
+
+
+networks:
+  my_network:
+    driver: bridge
+    name: my_network
+    ipam:
+      driver: default
+      config:
+        - subnet: 172.25.1.0/24
