@@ -1,0 +1,10 @@
+. {
+    whoami
+    forward . 172.25.1.4:53   # ここはPublic-DNSでもよい
+    errors
+    log . "{proto} {remote} is Request: {name} {type} {>id}"
+    hosts /etc/coredns/hosts {
+        fallthrough
+    }
+    reload
+}

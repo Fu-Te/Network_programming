@@ -14,8 +14,26 @@ services:
       - FTP_USER_PASS=uP@ssw0rd
       - FTP_USER_HOME=/home/uname
     networks:
-      - my_network
+      my_network:
+        ipv4_address: 172.25.1.3
     restart: always
+
+  #DNS
+  dns_server:
+    build: .
+    container_name: coredns
+    restart: on-failure
+    expose:
+      - '53'
+      - '53/udp'
+    ports:
+      - '20053:53'
+      - '20053:53/udp'
+    volumes:
+      - './volumes/config:/etc/coredns'
+    networks:
+      my_network:
+        ipv4_address: 172.25.1.4
 
 
 networks:
